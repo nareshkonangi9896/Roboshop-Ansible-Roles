@@ -1,4 +1,4 @@
-- name: copy "{{components}}" service file
+- name: copy {{components}} service file
   ansible.builtin.copy:
     src: "{{components}}.service"
     dest: /etc/systemd/system/
@@ -8,7 +8,7 @@
     - {{component}} != "mysql"
     - {{component}} != "rabbitmq"
     - {{component}} != "web"
-- name: reload, enable and start "{{component}}"" service
+- name: reload, enable and start "{{component}}" service
   ansible.builtin.systemd_service:
     state: started
     daemon_reload: true
