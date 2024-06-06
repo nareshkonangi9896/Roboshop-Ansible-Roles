@@ -1,6 +1,6 @@
 - name: copy {{components}} service file
   ansible.builtin.copy:
-    src: {{components}}.service
+    src: "{{components}}.service"
     dest: /etc/systemd/system/
   when: 
     - {{component}} != 'redis'
@@ -13,4 +13,4 @@
     state: started
     daemon_reload: true
     enabled: yes
-    name: {{component}}
+    name: "{{component}}""
