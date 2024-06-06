@@ -1,6 +1,6 @@
-- name: copy {{components}} service file
+- name: copy {{component}} service file
   ansible.builtin.copy:
-    src: "{{components}}.service"
+    src: "{{component}}.service"
     dest: /etc/systemd/system/
   when: 
     - {{component}} != "redis"
