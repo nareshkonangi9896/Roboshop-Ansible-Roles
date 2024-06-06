@@ -7,10 +7,11 @@
     ansible.builtin.yum:
       name: rabbitmq-server
       state: present
-  - name: start and enable service
-    ansible.builtin.import_role:
-      name: common
-      tasks_from: service_en&start
+  - name: start and enable rabbitmq service
+    ansible.builtin.service:
+      name: rabbitmq-server 
+      enabled: yes
+      state: restarted
   - name: 
     community.rabbitmq.rabbitmq_user:
       user: roboshop
