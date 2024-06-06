@@ -1,0 +1,23 @@
+  - name: setup rabbitmq repo file
+    ansible.builtin.shell: "{{item}}"
+    loop:
+      - "curl -s https://packagecloud.io/install/repositories/rabbitmq/erlang/script.rpm.sh | bash"
+      - "curl -s https://packagecloud.io/install/repositories/rabbitmq/rabbitmq-server/script.rpm.sh | bash"
+  - name: Install rabbitmq
+    ansible.builtin.yum:
+      name: rabbitmq-server
+      state: present
+  - name: start and enable service
+    ansible.builtin.import_role:
+      name: common
+      tasks_from: service_en&start
+  - name: 
+    community.rabbitmq.rabbitmq_user:
+      user: roboshop
+      password: roboshop123
+      vhost: /
+      configure_priv: .*
+      read_priv: .*
+      write_priv: .*
+      state: present
+

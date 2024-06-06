@@ -1,0 +1,23 @@
+  - name: Install python
+    ansible.builtin.yum:
+      name: "{{item}}"
+      state: present
+    loop:
+      - python36
+      - gcc
+      - python3-devel
+  - name: Application setup
+    ansible.builtin.import_role:
+      name: common
+      tasks_from: app_setup
+  - name: install dependencies
+    ansible.builtin.command: pip3.6 install -r requirements.txt
+    args:
+      chdir: /app/
+  - name: copy,reload,start and enable service
+    ansible.builtin.import_role:
+      name: common
+      tasks_from: service_en&start
+  
+
+  
