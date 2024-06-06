@@ -16,19 +16,19 @@
 #     name: "{{component}}"
 
 - name: Copy {{component}} service file
-    ansible.builtin.copy:
-      src: "{{ component }}.service"
-      dest: /etc/systemd/system/
-    when:
-      - component != "redis"
-      - component != "mongodb"
-      - component != "mysql"
-      - component != "rabbitmq"
-      - component != "web"
+  ansible.builtin.copy:
+    src: "{{ component }}.service"
+    dest: /etc/systemd/system/
+  when:
+    - component != "redis"
+    - component != "mongodb"
+    - component != "mysql"
+    - component != "rabbitmq"
+    - component != "web"
 
-  - name: Reload, enable and start {{ component }} service
-    ansible.builtin.systemd:
-      state: started
-      daemon_reload: true
-      enabled: yes
-      name: "{{ component }}"
+- name: Reload, enable and start {{ component }} service
+  ansible.builtin.systemd:
+    state: started
+    daemon_reload: true
+    enabled: yes
+    name: "{{ component }}"
