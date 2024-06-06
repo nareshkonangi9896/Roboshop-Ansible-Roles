@@ -5,7 +5,7 @@
 - name: Create a roboshop user 
   ansible.builtin.user:
     name: roboshop
-    when: output.rc!=0
+  when: output.rc!=0
 - name: Create a directory if it does not exist
   ansible.builtin.file:
     path: /app/
