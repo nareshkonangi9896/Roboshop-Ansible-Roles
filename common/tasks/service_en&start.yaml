@@ -7,7 +7,7 @@
     - component != "web"
 - name: reload, enable and start {{component}} service
   ansible.builtin.systemd_service:
-    state: started
     daemon_reload: true
+    state: started
     enabled: yes
     name: "{{component}}"
