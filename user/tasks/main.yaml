@@ -10,14 +10,14 @@
     ansible.builtin.command: npm install
     args:
       chdir: /app/
-  - name: copy,reload,start and enable service
-    ansible.builtin.import_role:
-      name: common
-      tasks_from: service_en&start
   - name: load schema into mongo
     ansible.builtin.import_role:
       name: common
       tasks_from: load_mongo_schema
+  - name: copy,reload,start and enable service
+    ansible.builtin.import_role:
+      name: common
+      tasks_from: service_en&start
   
 
   
