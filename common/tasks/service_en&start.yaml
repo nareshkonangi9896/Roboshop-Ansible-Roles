@@ -4,8 +4,6 @@
     dest: /etc/systemd/system/
   when:
     - component != "redis"
-    - component != "mongodb"
-    - component != "mysql"
     - component != "rabbitmq"
     - component != "web"
 - name: reload, enable and start {{component}} service
